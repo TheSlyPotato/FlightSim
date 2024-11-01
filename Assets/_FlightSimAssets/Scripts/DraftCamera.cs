@@ -4,7 +4,7 @@ public class DraftCamera : MonoBehaviour
 {
     public Transform target;           // Aircraft to follow
     public Vector3 offset = new Vector3(0, 5, -10); // Offset position relative to the target
-    public float positionSmoothTime = 0.3f;  // Time for position smoothing
+    public float positionSmoothTime = 5f;  // Time for position smoothing
     public float rotationSmoothTime = 0.1f;  // Time for rotation smoothing
     public float maxRotationSpeed = 100f;    // Maximum rotation speed
 
@@ -12,7 +12,7 @@ public class DraftCamera : MonoBehaviour
     private Vector3 rotationVelocity;        // Velocity reference for rotation SmoothDamp
 
     void LateUpdate()
-    {
+    {/*
         if (target == null) return;
 
         // Calculate the desired position
@@ -25,6 +25,11 @@ public class DraftCamera : MonoBehaviour
         Quaternion desiredRotation = Quaternion.LookRotation(target.position - transform.position, target.up);
 
         // Smoothly rotate the camera towards the desired rotation
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, desiredRotation, maxRotationSpeed * Time.deltaTime);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, desiredRotation, maxRotationSpeed * Time.deltaTime);*/
+
+        Vector3 targetPos = target.position + offset;
+        transform.position = targetPos;
+        //transform.position = Vector3.Lerp(transform.position, targetPos, positionSmoothTime * Time.deltaTime);
+        transform.forward = target.position - transform.position;
     }
 }

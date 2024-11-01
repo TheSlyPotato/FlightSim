@@ -240,6 +240,78 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &1324342150 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5273430145003079166, guid: 1ed65f843904f664eaf7bf5a8ed169ea, type: 3}
+  m_PrefabInstance: {fileID: 5864604664080160621}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1324342152 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2846309074454419239, guid: 1ed65f843904f664eaf7bf5a8ed169ea, type: 3}
+  m_PrefabInstance: {fileID: 5864604664080160621}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1324342153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1324342150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52d0cf60a6e1e1f4fa514b39bedeead4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mass: 1000
+  model: {fileID: 1494430485}
+  airVelocity: {x: 0, y: -31.123692, z: 0}
+  flapAngleLimit: 15
+  flapAngularSpeed: 5
+  pitchAngle: 0
+  yawAngle: 0
+  rollAngle: 0
+  maxThrust: 1500
+  thrustPercent: 0
+  thrustPercentChangeRate: 20
+  liftCoefficient: 0.23
+  dragCoefficient: 0.28
+  airDensity: 1.18
+  pitchTorqueCoefficient: 5
+  yawTorqueCoefficient: 2
+  rollTorqueCoefficient: 3
+  epsilon: 0.1
+--- !u!54 &1324342154
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1324342150}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!1 &1494430485 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 409124424076428354, guid: 1ed65f843904f664eaf7bf5a8ed169ea, type: 3}
+  m_PrefabInstance: {fileID: 5864604664080160621}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1751154971
 GameObject:
   m_ObjectHideFlags: 0
@@ -332,6 +404,7 @@ GameObject:
   - component: {fileID: 1870792515}
   - component: {fileID: 1870792514}
   - component: {fileID: 1870792517}
+  - component: {fileID: 1870792518}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -457,6 +530,23 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!114 &1870792518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1870792513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff6421764aa6480458b7ad01b502cae3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1324342152}
+  offset: {x: 0, y: 10, z: -25}
+  positionSmoothTime: 50
+  rotationSmoothTime: 0.1
+  maxRotationSpeed: 100
 --- !u!1001 &5864604664080160621
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -512,7 +602,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5273430145003079166, guid: 1ed65f843904f664eaf7bf5a8ed169ea, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1324342154}
+    - targetCorrespondingSourceObject: {fileID: 5273430145003079166, guid: 1ed65f843904f664eaf7bf5a8ed169ea, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1324342153}
   m_SourcePrefab: {fileID: 100100000, guid: 1ed65f843904f664eaf7bf5a8ed169ea, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
