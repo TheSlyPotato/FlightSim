@@ -73,3 +73,5 @@ crashlytics-build.properties
 /Packages/com.singularitygroup.hotreload
 ProjectSettings/ProjectVersion.txt
 ProjectSettings/ProjectVersion.txt
+/Assets/EmaceArt
+Assets/EmaceArt.meta
