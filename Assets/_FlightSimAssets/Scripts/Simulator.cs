@@ -57,9 +57,9 @@ public class Simulator : MonoBehaviour
         currentForceAndTorque[1] = (forceAndTorqueThisFrame[1] + forceAndTorquePrediction[1]) * 0.5f;
 
 
-        //rb.AddForce(currentForceAndTorque[0]);
-       // rb.AddTorque(currentForceAndTorque[1]);
-        //rb.AddForce(transform.forward * thrust);
+        rb.AddForce(currentForceAndTorque[0]);
+        rb.AddTorque(currentForceAndTorque[1]);
+        rb.AddForce(transform.forward * thrust);
         
     }
 
@@ -83,15 +83,27 @@ public class Simulator : MonoBehaviour
     }
 
     private Vector3 HalfFrameAngularVelocity(Vector3 torque)
-    {
+    {        
         Quaternion inertiaTensorWorldRotation = rb.rotation * rb.inertiaTensorRotation;
+        if (inertiaTensorWorldRotation != Quaternion.identity) {
+            inertiaTensorWorldRotation = Quaternion.Normalize(inertiaTensorWorldRotation);
+        }
         Vector3 torqueInDiagonalSpace = Quaternion.Inverse(inertiaTensorWorldRotation) * torque;
         Vector3 angularVelocityChangeInDiagonalSpace;
-        angularVelocityChangeInDiagonalSpace.x = torqueInDiagonalSpace.x / rb.inertiaTensor.x;
-        angularVelocityChangeInDiagonalSpace.y = torqueInDiagonalSpace.y / rb.inertiaTensor.y;
-        angularVelocityChangeInDiagonalSpace.z = torqueInDiagonalSpace.z / rb.inertiaTensor.z;
+        
+        angularVelocityChangeInDiagonalSpace.x = rb.inertiaTensor.x != 0 ? torqueInDiagonalSpace.x / rb.inertiaTensor.x : 0;
+        angularVelocityChangeInDiagonalSpace.y = rb.inertiaTensor.y != 0 ? torqueInDiagonalSpace.y / rb.inertiaTensor.y : 0;
+        angularVelocityChangeInDiagonalSpace.z = rb.inertiaTensor.z != 0 ? torqueInDiagonalSpace.z / rb.inertiaTensor.z : 0;
 
-        return rb.angularVelocity + Time.fixedDeltaTime * 0.5f * (inertiaTensorWorldRotation * angularVelocityChangeInDiagonalSpace);
+        Vector3 angularVelocityChange = inertiaTensorWorldRotation * angularVelocityChangeInDiagonalSpace;
+        Vector3 newAngularVelocity = rb.angularVelocity + Time.fixedDeltaTime * 0.5f * angularVelocityChange;
+    
+        if (float.IsNaN(newAngularVelocity.x) || float.IsNaN(newAngularVelocity.y) || float.IsNaN(newAngularVelocity.z)) {
+            Debug.LogWarning("NaN detected in angular velocity calculation; retaining previous angular velocity.");
+            return rb.angularVelocity;
+        }
+
+        return newAngularVelocity;
     }
 
     private float SetThrust()
