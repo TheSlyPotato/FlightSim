@@ -56,6 +56,8 @@ public class Simulator : MonoBehaviour
         currentForceAndTorque[0] = (forceAndTorqueThisFrame[0] + forceAndTorquePrediction[0]) * 0.5f;
         currentForceAndTorque[1] = (forceAndTorqueThisFrame[1] + forceAndTorquePrediction[1]) * 0.5f;
 
+        Debug.Log(currentForceAndTorque[0]);
+        Debug.Log(currentForceAndTorque[1]);
 
         rb.AddForce(currentForceAndTorque[0]);
         rb.AddTorque(currentForceAndTorque[1]);

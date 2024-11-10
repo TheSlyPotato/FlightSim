@@ -100,11 +100,11 @@ public class AeroSurface : MonoBehaviour
         Vector3 torque = -transform.forward * aerodynamicCoefficients.z * dynamicPressure * area * chord;
 
 
-        Debug.Log($"Lift: {lift}, Drag: {drag}, Torque: {torque}");
+        /*Debug.Log($"Lift: {lift}, Drag: {drag}, Torque: {torque}");
         if (float.IsNaN(lift.x) || float.IsNaN(drag.x) || float.IsNaN(torque.x))
         {
             Debug.LogError("NaN detected in calculated forces/torques.");
-        }
+        }*/
 
 
         forceAndTorque[0] += lift + drag;
