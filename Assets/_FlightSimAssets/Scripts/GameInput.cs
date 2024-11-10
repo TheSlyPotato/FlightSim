@@ -11,11 +11,18 @@ public class GameInput : MonoBehaviour
     private PlayerInputActions inputActions;
 
     #region INPUTS
+
+    [Range(-1, 1)]
     public float pitch;
+    [Range(-1, 1)]
     public float roll;
+    [Range(-1, 1)]
     public float yaw;
-    public bool isThrottlePressed;
-    public bool isBrakePressed;
+    [Range(0, 1)]
+    public bool isThrottleUpPressed;
+    public bool isThrottleDownPressed;
+    public bool flapDeployed;
+    public bool brakeDeployed;
     #endregion
 
     private void Awake()
@@ -44,30 +51,42 @@ public class GameInput : MonoBehaviour
 
     private void Start()
     {
-        inputActions.Player.Throttle.performed += Throttle_Performed;
-        inputActions.Player.Throttle.canceled += Throttle_Canceled;
-        inputActions.Player.Brake.performed += Brake_Performed;
-        inputActions.Player.Brake.canceled += Brake_Canceled;
+        inputActions.Player.ThrottleUp.performed += ThrottleUp_Performed;
+        inputActions.Player.ThrottleUp.canceled += ThrottleUp_Canceled;
+        inputActions.Player.ThrottleDown.performed += ThrottleDown_Performed;
+        inputActions.Player.ThrottleDown.canceled += ThrottleDown_Canceled;
+        inputActions.Player.Flap.performed += Flap_Toggle;
+        inputActions.Player.Brake.performed += Brake_Toggle;
     }
 
-    private void Brake_Performed(InputAction.CallbackContext obj)
+    private void ThrottleDown_Performed(InputAction.CallbackContext obj)
     {
-        isBrakePressed = true;
+        isThrottleDownPressed = true;
     }
 
-    private void Brake_Canceled(InputAction.CallbackContext context)
+    private void ThrottleDown_Canceled(InputAction.CallbackContext context)
     {
-        isBrakePressed = false;
+        isThrottleDownPressed = false;
     }
 
-    private void Throttle_Performed(InputAction.CallbackContext obj)
+    private void ThrottleUp_Performed(InputAction.CallbackContext obj)
     {
-        isThrottlePressed = true;
+        isThrottleUpPressed = true;
     }
 
-    private void Throttle_Canceled(InputAction.CallbackContext obj)
+    private void ThrottleUp_Canceled(InputAction.CallbackContext obj)
     {
-        isThrottlePressed = false;
+        isThrottleUpPressed = false;
+    }
+
+    private void Flap_Toggle(InputAction.CallbackContext obj)
+    {
+        flapDeployed = !flapDeployed;
+    }
+
+    private void Brake_Toggle(InputAction.CallbackContext obj)
+    {
+        brakeDeployed = !brakeDeployed;
     }
 
     private void Update()

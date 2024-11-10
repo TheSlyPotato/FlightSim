@@ -55,7 +55,16 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Throttle"",
+                    ""name"": ""Flap"",
+                    ""type"": ""Button"",
+                    ""id"": ""43f5c7ad-de5c-469a-9970-811d776c4a07"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ThrottleUp"",
                     ""type"": ""Button"",
                     ""id"": ""22ad0f6c-a59c-4cf3-898c-82f6b3dcce34"",
                     ""expectedControlType"": """",
@@ -64,9 +73,18 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Brake"",
+                    ""name"": ""ThrottleDown"",
                     ""type"": ""Button"",
                     ""id"": ""25bbcef1-c9dc-4e87-a143-0a3e6485047d"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Brake"",
+                    ""type"": ""Button"",
+                    ""id"": ""362529ee-1466-44b6-bc7c-5230acbcee3c"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -154,7 +172,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""negative"",
                     ""id"": ""69807a7e-ba51-42d1-9e04-f426243240a9"",
-                    ""path"": ""<Keyboard>/a"",
+                    ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
@@ -165,7 +183,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""positive"",
                     ""id"": ""a092d048-b66a-492f-8159-604156da4a71"",
-                    ""path"": ""<Keyboard>/d"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -220,7 +238,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""negative"",
                     ""id"": ""9678f732-db6f-41f4-9e38-3c0b867d4e63"",
-                    ""path"": ""<Keyboard>/q"",
+                    ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -231,7 +249,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""positive"",
                     ""id"": ""1a024cce-bf6f-4cf6-9cd1-d186b350a4ce"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -279,7 +297,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Throttle"",
+                    ""action"": ""ThrottleUp"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -290,7 +308,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Throttle"",
+                    ""action"": ""ThrottleUp"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -301,7 +319,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Brake"",
+                    ""action"": ""ThrottleDown"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -312,7 +330,29 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
+                    ""action"": ""ThrottleDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6896170f-6daa-4cdf-a781-d69aaa3dd312"",
+                    ""path"": ""<Keyboard>/b"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
                     ""action"": ""Brake"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ac5f5891-ab00-4917-a803-50bc872e508f"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Flap"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -903,7 +943,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Player_Pitch = m_Player.FindAction("Pitch", throwIfNotFound: true);
         m_Player_Roll = m_Player.FindAction("Roll", throwIfNotFound: true);
         m_Player_Yaw = m_Player.FindAction("Yaw", throwIfNotFound: true);
-        m_Player_Throttle = m_Player.FindAction("Throttle", throwIfNotFound: true);
+        m_Player_Flap = m_Player.FindAction("Flap", throwIfNotFound: true);
+        m_Player_ThrottleUp = m_Player.FindAction("ThrottleUp", throwIfNotFound: true);
+        m_Player_ThrottleDown = m_Player.FindAction("ThrottleDown", throwIfNotFound: true);
         m_Player_Brake = m_Player.FindAction("Brake", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
@@ -987,7 +1029,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Pitch;
     private readonly InputAction m_Player_Roll;
     private readonly InputAction m_Player_Yaw;
-    private readonly InputAction m_Player_Throttle;
+    private readonly InputAction m_Player_Flap;
+    private readonly InputAction m_Player_ThrottleUp;
+    private readonly InputAction m_Player_ThrottleDown;
     private readonly InputAction m_Player_Brake;
     public struct PlayerActions
     {
@@ -996,7 +1040,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @Pitch => m_Wrapper.m_Player_Pitch;
         public InputAction @Roll => m_Wrapper.m_Player_Roll;
         public InputAction @Yaw => m_Wrapper.m_Player_Yaw;
-        public InputAction @Throttle => m_Wrapper.m_Player_Throttle;
+        public InputAction @Flap => m_Wrapper.m_Player_Flap;
+        public InputAction @ThrottleUp => m_Wrapper.m_Player_ThrottleUp;
+        public InputAction @ThrottleDown => m_Wrapper.m_Player_ThrottleDown;
         public InputAction @Brake => m_Wrapper.m_Player_Brake;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
@@ -1016,9 +1062,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Yaw.started += instance.OnYaw;
             @Yaw.performed += instance.OnYaw;
             @Yaw.canceled += instance.OnYaw;
-            @Throttle.started += instance.OnThrottle;
-            @Throttle.performed += instance.OnThrottle;
-            @Throttle.canceled += instance.OnThrottle;
+            @Flap.started += instance.OnFlap;
+            @Flap.performed += instance.OnFlap;
+            @Flap.canceled += instance.OnFlap;
+            @ThrottleUp.started += instance.OnThrottleUp;
+            @ThrottleUp.performed += instance.OnThrottleUp;
+            @ThrottleUp.canceled += instance.OnThrottleUp;
+            @ThrottleDown.started += instance.OnThrottleDown;
+            @ThrottleDown.performed += instance.OnThrottleDown;
+            @ThrottleDown.canceled += instance.OnThrottleDown;
             @Brake.started += instance.OnBrake;
             @Brake.performed += instance.OnBrake;
             @Brake.canceled += instance.OnBrake;
@@ -1035,9 +1087,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Yaw.started -= instance.OnYaw;
             @Yaw.performed -= instance.OnYaw;
             @Yaw.canceled -= instance.OnYaw;
-            @Throttle.started -= instance.OnThrottle;
-            @Throttle.performed -= instance.OnThrottle;
-            @Throttle.canceled -= instance.OnThrottle;
+            @Flap.started -= instance.OnFlap;
+            @Flap.performed -= instance.OnFlap;
+            @Flap.canceled -= instance.OnFlap;
+            @ThrottleUp.started -= instance.OnThrottleUp;
+            @ThrottleUp.performed -= instance.OnThrottleUp;
+            @ThrottleUp.canceled -= instance.OnThrottleUp;
+            @ThrottleDown.started -= instance.OnThrottleDown;
+            @ThrottleDown.performed -= instance.OnThrottleDown;
+            @ThrottleDown.canceled -= instance.OnThrottleDown;
             @Brake.started -= instance.OnBrake;
             @Brake.performed -= instance.OnBrake;
             @Brake.canceled -= instance.OnBrake;
@@ -1226,7 +1284,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnPitch(InputAction.CallbackContext context);
         void OnRoll(InputAction.CallbackContext context);
         void OnYaw(InputAction.CallbackContext context);
-        void OnThrottle(InputAction.CallbackContext context);
+        void OnFlap(InputAction.CallbackContext context);
+        void OnThrottleUp(InputAction.CallbackContext context);
+        void OnThrottleDown(InputAction.CallbackContext context);
         void OnBrake(InputAction.CallbackContext context);
     }
     public interface IUIActions

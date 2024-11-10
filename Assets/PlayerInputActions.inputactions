@@ -33,7 +33,16 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Throttle",
+                    "name": "Flap",
+                    "type": "Button",
+                    "id": "43f5c7ad-de5c-469a-9970-811d776c4a07",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ThrottleUp",
                     "type": "Button",
                     "id": "22ad0f6c-a59c-4cf3-898c-82f6b3dcce34",
                     "expectedControlType": "",
@@ -42,9 +51,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Brake",
+                    "name": "ThrottleDown",
                     "type": "Button",
                     "id": "25bbcef1-c9dc-4e87-a143-0a3e6485047d",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Brake",
+                    "type": "Button",
+                    "id": "362529ee-1466-44b6-bc7c-5230acbcee3c",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -132,7 +150,7 @@
                 {
                     "name": "negative",
                     "id": "69807a7e-ba51-42d1-9e04-f426243240a9",
-                    "path": "<Keyboard>/a",
+                    "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
@@ -143,7 +161,7 @@
                 {
                     "name": "positive",
                     "id": "a092d048-b66a-492f-8159-604156da4a71",
-                    "path": "<Keyboard>/d",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -198,7 +216,7 @@
                 {
                     "name": "negative",
                     "id": "9678f732-db6f-41f4-9e38-3c0b867d4e63",
-                    "path": "<Keyboard>/q",
+                    "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -209,7 +227,7 @@
                 {
                     "name": "positive",
                     "id": "1a024cce-bf6f-4cf6-9cd1-d186b350a4ce",
-                    "path": "<Keyboard>/e",
+                    "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -257,7 +275,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Throttle",
+                    "action": "ThrottleUp",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -268,7 +286,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Throttle",
+                    "action": "ThrottleUp",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -279,7 +297,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Brake",
+                    "action": "ThrottleDown",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -290,7 +308,29 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
+                    "action": "ThrottleDown",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6896170f-6daa-4cdf-a781-d69aaa3dd312",
+                    "path": "<Keyboard>/b",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "Brake",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ac5f5891-ab00-4917-a803-50bc872e508f",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Flap",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
