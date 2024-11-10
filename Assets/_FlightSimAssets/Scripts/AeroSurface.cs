@@ -33,11 +33,14 @@ public class AeroSurface : MonoBehaviour
     {
         Vector3[] forceAndTorque = {Vector3.zero, Vector3.zero};
         if (!gameObject.activeInHierarchy) return forceAndTorque;
-
-        if(worldAirVelocity.x == float.NaN || worldAirVelocity.y == float.NaN || worldAirVelocity.z == float.NaN)
+        
+        //nan check
+        if (float.IsNaN(worldAirVelocity.x) || float.IsNaN(worldAirVelocity.y) || float.IsNaN(worldAirVelocity.z))
         {
-            worldAirVelocity = Vector3.zero;
+            Debug.LogWarning("NaN detected in worldAirVelocity before CalculateForces is called.");
+            worldAirVelocity = Vector3.zero; // or another fallback
         }
+
 
         // Accounting for aspect ratio effect on lift coefficient.
         float correctedLiftSlope = liftSlope * aspectRatio /
@@ -68,22 +71,41 @@ public class AeroSurface : MonoBehaviour
         Vector3 dragDirection = transform.TransformDirection(airVelocity.normalized);
         Vector3 liftDirection = Vector3.Cross(dragDirection, transform.forward);
 
-        Debug.Log(worldAirVelocity);
-
         float area = chord * span;
         float dynamicPressure = 0.5f * airDensity * airVelocity.sqrMagnitude;
         float angleOfAttack = Mathf.Atan2(airVelocity.y, -airVelocity.x);
+        
+        //nan check
+        if (dynamicPressure == 0)
+        {
+            Debug.LogWarning("Dynamic pressure is zero, potential NaN risk in further calculations.");
+            
+        }
 
-                
+        //nan check
+        if (float.IsNaN(angleOfAttack))
+        {
+            Debug.LogWarning("NaN detected in angleOfAttack calculation.");
+            angleOfAttack = 0; 
+        }
+        
         Vector3 aerodynamicCoefficients = CalculateCoefficients(angleOfAttack,
                                                                 correctedLiftSlope,
                                                                 zeroLiftAoACorrected,
                                                                 stallAngleHighCorrected,
-                                                                stallAngleLowCorrected);
+                                                                stallAngleLowCorrected);      
 
         Vector3 lift = liftDirection * aerodynamicCoefficients.x * dynamicPressure * area;
         Vector3 drag = dragDirection * aerodynamicCoefficients.y * dynamicPressure * area;
         Vector3 torque = -transform.forward * aerodynamicCoefficients.z * dynamicPressure * area * chord;
+
+
+        Debug.Log($"Lift: {lift}, Drag: {drag}, Torque: {torque}");
+        if (float.IsNaN(lift.x) || float.IsNaN(drag.x) || float.IsNaN(torque.x))
+        {
+            Debug.LogError("NaN detected in calculated forces/torques.");
+        }
+
 
         forceAndTorque[0] += lift + drag;
         forceAndTorque[1] += Vector3.Cross(relativePosition, forceAndTorque[0]);
