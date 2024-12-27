@@ -40,6 +40,14 @@ public class Simulator : MonoBehaviour
         }
 
         thrust = SetThrust();
+
+        float pitchLastFrame = GameInput.instance.pitch;
+
+        if (GameInput.instance.isTrimActive)
+        {
+            if(GameInput.instance.pitch == 0f) GameInput.instance.pitch = pitchLastFrame;
+
+        }
     }
 
     private void FixedUpdate()
@@ -56,12 +64,13 @@ public class Simulator : MonoBehaviour
         currentForceAndTorque[0] = (forceAndTorqueThisFrame[0] + forceAndTorquePrediction[0]) * 0.5f;
         currentForceAndTorque[1] = (forceAndTorqueThisFrame[1] + forceAndTorquePrediction[1]) * 0.5f;
 
-        Debug.Log(currentForceAndTorque[0]);
-        Debug.Log(currentForceAndTorque[1]);
+        //Debug.Log(currentForceAndTorque[0]);
+        //Debug.Log(currentForceAndTorque[1]);
 
         rb.AddForce(currentForceAndTorque[0]);
         rb.AddTorque(currentForceAndTorque[1]);
         rb.AddForce(transform.forward * thrust);
+        Debug.Log(Vector3.Dot(transform.forward, rb.linearVelocity));
         
     }
 
@@ -147,4 +156,6 @@ public class Simulator : MonoBehaviour
             }
         }
     }
+
+
 }

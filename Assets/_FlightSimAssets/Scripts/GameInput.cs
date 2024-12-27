@@ -23,6 +23,7 @@ public class GameInput : MonoBehaviour
     public bool isThrottleDownPressed;
     public bool flapDeployed;
     public bool brakeDeployed;
+    public bool isTrimActive;
     #endregion
 
     private void Awake()
@@ -57,6 +58,7 @@ public class GameInput : MonoBehaviour
         inputActions.Player.ThrottleDown.canceled += ThrottleDown_Canceled;
         inputActions.Player.Flap.performed += Flap_Toggle;
         inputActions.Player.Brake.performed += Brake_Toggle;
+        inputActions.Player.Trim.performed += Trim_Toggle;
     }
 
     private void ThrottleDown_Performed(InputAction.CallbackContext obj)
@@ -87,6 +89,11 @@ public class GameInput : MonoBehaviour
     private void Brake_Toggle(InputAction.CallbackContext obj)
     {
         brakeDeployed = !brakeDeployed;
+    }
+
+    private void Trim_Toggle(InputAction.CallbackContext obj)
+    {
+        isTrimActive = !isTrimActive;
     }
 
     private void Update()
